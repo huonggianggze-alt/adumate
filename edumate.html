@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff3f7">
+  <meta name="description" content="Edumate - góc học tập pastel thân thiện, giúp học sinh tập trung, ghi nhớ và sắp xếp việc học.">
+  <title>Edumate | Góc học tập của bạn</title>
+  <link rel="stylesheet" href="edumate.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Edumate - Trang chủ">
+        <span class="brand-mark" aria-hidden="true">e</span>
+        <span>edu<span class="brand-highlight">mate</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Danh mục Edumate">
+        <button class="nav-link active" type="button" data-view="dashboard">Góc học tập</button>
+        <button class="nav-link" type="button" data-view="companion">Người bạn đồng hành</button>
+        <button class="nav-link" type="button" data-view="quiz">Luyện thi trắc nghiệm học tập</button>
+      </nav>
+      <div class="topbar-right">
+        <span class="today-label" id="todayLabel"></span>
+        <button class="icon-button notification-button" id="notificationButton" type="button" aria-label="Bật thông báo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="avatar" aria-label="Xin chào bạn">H</div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow">GÓC HỌC TẬP CỦA BẠN</p>
+          <h1>Chào bạn, sẵn sàng học chưa? <span aria-hidden="true">✨</span></h1>
+          <p class="welcome-copy">Chia nhỏ mục tiêu, tập trung từng chút một. Bạn làm được mà!</p>
+        </div>
+        <div class="daily-card">
+          <span class="daily-icon" aria-hidden="true">🌱</span>
+          <span><strong>Mỗi ngày một chút</strong><small>Tiến bộ hơn hôm qua</small></span>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" aria-label="Công cụ học tập">
+        <article class="panel timer-panel" id="pomodoro">
+          <div class="panel-heading">
+            <div class="heading-icon lavender" aria-hidden="true">◷</div>
+            <div><h2>Đồng hồ tập trung</h2><p>Tập trung hết mình, nghỉ ngơi hợp lý</p></div>
+          </div>
+          <div class="timer-tabs" role="group" aria-label="Chọn chế độ Pomodoro">
+            <button class="timer-tab active" type="button" data-mode="study" aria-pressed="true">📚 Học tập</button>
+            <button class="timer-tab" type="button" data-mode="break" aria-pressed="false">☕ Nghỉ ngơi</button>
+          </div>
+          <div class="timer-face" id="timerFace" aria-live="off">
+            <svg class="timer-ring" viewBox="0 0 220 220" aria-hidden="true">
+              <circle class="ring-track" cx="110" cy="110" r="99"></circle>
+              <circle class="ring-progress" id="timerProgress" cx="110" cy="110" r="99"></circle>
+            </svg>
+            <div class="timer-reading"><span id="timerDisplay">25:00</span><small id="timerCaption">Sẵn sàng bắt đầu</small></div>
+          </div>
+          <div class="timer-controls">
+            <button class="button button-primary" id="startButton" type="button"><span aria-hidden="true">▶</span> Bắt đầu</button>
+            <button class="button button-soft" id="resetButton" type="button"><span aria-hidden="true">↺</span> Reset</button>
+          </div>
+          <p class="timer-tip"><span aria-hidden="true">💡</span> Mẹo nhỏ: hãy để điện thoại sang một bên nhé!</p>
+        </article>
+
+        <article class="panel tasks-panel" id="tasks">
+          <div class="panel-heading panel-heading-between">
+            <div class="heading-title">
+              <div class="heading-icon peach" aria-hidden="true">✓</div>
+              <div><h2>Lịch học tập</h2><p>Việc nhỏ hoàn thành, mục tiêu lớn gần hơn</p></div>
+            </div>
+            <span class="task-count" id="taskCount">0 việc</span>
+          </div>
+          <form class="task-form" id="taskForm">
+            <label class="sr-only" for="taskTitle">Tên bài tập hoặc nhiệm vụ</label>
+            <input id="taskTitle" name="title" type="text" maxlength="120" placeholder="Thêm bài tập hoặc nhiệm vụ..." required>
+            <div class="task-form-row">
+              <label class="sr-only" for="taskSubject">Môn học</label>
+              <select id="taskSubject" name="subject">
+                <option value="Khác">📌 Môn học</option>
+                <option value="Toán">📐 Toán</option>
+                <option value="Ngữ văn">📖 Ngữ văn</option>
+                <option value="Tiếng Anh">🌍 Tiếng Anh</option>
+                <option value="Vật lý">⚡ Vật lý</option>
+                <option value="Hóa học">🧪 Hóa học</option>
+                <option value="Sinh học">🌿 Sinh học</option>
+                <option value="Lịch sử">🏛️ Lịch sử</option>
+                <option value="Khác">📝 Khác</option>
+              </select>
+              <label class="date-field"><span aria-hidden="true">📅</span><span class="sr-only">Hạn nộp</span><input id="taskDue" name="due" type="date" aria-label="Hạn nộp"></label>
+              <button class="button button-add" type="submit" aria-label="Thêm nhiệm vụ">+</button>
+            </div>
+          </form>
+          <div class="task-list" id="taskList" aria-live="polite"></div>
+          <p class="empty-state" id="taskEmpty">Chưa có nhiệm vụ nào. Thêm việc đầu tiên nhé! 🌼</p>
+        </article>
+
+        <article class="panel flashcard-panel" id="flashcards">
+          <div class="panel-heading panel-heading-between">
+            <div class="heading-title">
+              <div class="heading-icon mint" aria-hidden="true">▤</div>
+              <div><h2>Thẻ ghi nhớ</h2><p>Học nhanh, nhớ lâu với flashcard</p></div>
+            </div>
+            <span class="card-count" id="cardCount">0 thẻ</span>
+          </div>
+          <div class="flashcard-area">
+            <button class="flashcard" id="flashcard" type="button" aria-label="Lật thẻ ghi nhớ" aria-pressed="false">
+              <span class="flashcard-inner">
+                <span class="flashcard-face flashcard-front"><span class="card-face-label">CÂU HỎI / TỪ VỰNG</span><span id="cardFrontText">Tạo thẻ đầu tiên của bạn</span><span class="flip-hint">Chạm để lật thẻ ↻</span></span>
+                <span class="flashcard-face flashcard-back"><span class="card-face-label">CÂU TRẢ LỜI / Ý NGHĨA</span><span id="cardBackText">Đáp án sẽ hiện ở đây</span><span class="flip-hint">Chạm để lật lại ↻</span></span>
+              </span>
+            </button>
+          </div>
+          <div class="flashcard-actions">
+            <button class="button button-soft compact-button" id="previousCard" type="button" aria-label="Thẻ trước">←</button>
+            <span id="cardPosition">0 / 0</span>
+            <button class="button button-soft compact-button" id="nextCard" type="button" aria-label="Thẻ tiếp theo">→</button>
+            <button class="text-button" id="deleteCard" type="button" disabled>Xóa thẻ</button>
+          </div>
+          <form class="flashcard-form" id="flashcardForm">
+            <label class="sr-only" for="flashFront">Mặt trước</label>
+            <input id="flashFront" name="front" maxlength="160" placeholder="Mặt trước: câu hỏi / từ vựng" required>
+            <label class="sr-only" for="flashBack">Mặt sau</label>
+            <input id="flashBack" name="back" maxlength="240" placeholder="Mặt sau: câu trả lời / ý nghĩa" required>
+            <button class="button button-add-card" type="submit">+ Tạo thẻ mới</button>
+          </form>
+        </article>
+
+        <article class="panel notes-panel" id="notes">
+          <div class="panel-heading">
+            <div class="heading-icon yellow" aria-hidden="true">✎</div>
+            <div><h2>Ghi chú nhanh</h2><p>Ghi lại ý tưởng trước khi chúng bay mất</p></div>
+          </div>
+          <label class="sr-only" for="quickNotes">Nội dung ghi chú học tập</label>
+          <textarea id="quickNotes" maxlength="3000" placeholder="Viết ghi chú học tập của bạn ở đây...&#10;&#10;• Công thức cần nhớ&#10;• Ý tưởng cho bài tập&#10;• Điều muốn ôn tập thêm"></textarea>
+          <div class="notes-footer"><span id="notesStatus" role="status">Tự động lưu trên thiết bị này</span><span id="notesLength">0 / 3000</span></div>
+        </article>
+      </section>
+      <section class="companion-view" id="companionView" aria-label="Người bạn đồng hành" hidden>
+        <aside class="chat-sidebar">
+          <button class="new-chat-button" id="newChatButton" type="button"><span aria-hidden="true">＋</span> Cuộc trò chuyện mới</button>
+          <div class="sidebar-section">
+            <h2 class="sidebar-label">CHỦ ĐỀ HỌC TẬP</h2>
+            <div class="topic-list">
+              <button class="topic-button active" type="button" data-topic="Chung"><span aria-hidden="true">✨</span> Tất cả chủ đề</button>
+              <button class="topic-button" type="button" data-topic="Toán"><span aria-hidden="true">📐</span> Toán</button>
+              <button class="topic-button" type="button" data-topic="Văn"><span aria-hidden="true">📖</span> Văn</button>
+              <button class="topic-button" type="button" data-topic="Anh"><span aria-hidden="true">🌍</span> Anh</button>
+              <button class="topic-button" type="button" data-topic="Khoa học"><span aria-hidden="true">🔬</span> Khoa học</button>
+            </div>
+          </div>
+          <div class="sidebar-section history-section">
+            <div class="history-heading"><h2 class="sidebar-label">LỊCH SỬ CÂU HỎI</h2><span id="historyCount">0</span></div>
+            <div class="history-list" id="historyList" aria-label="Các cuộc trò chuyện trước"></div>
+            <p class="history-empty" id="historyEmpty">Các cuộc trò chuyện của bạn sẽ xuất hiện ở đây.</p>
+          </div>
+          <p class="sidebar-note">Lịch sử chỉ được lưu trên thiết bị này.</p>
+        </aside>
+
+        <section class="chat-main" aria-label="Khung trò chuyện">
+          <header class="chat-header">
+            <div class="chat-avatar" aria-hidden="true">✦</div>
+            <div><h1 id="chatTitle">Người bạn đồng hành</h1><p><span class="online-dot"></span> Luôn sẵn sàng cùng bạn học tập</p></div>
+            <span class="chat-topic-badge" id="chatTopicBadge">Chung</span>
+          </header>
+          <div class="ai-connection-notice" role="note">
+            <span aria-hidden="true">ℹ️</span>
+            <p>Đây là giao diện chat mẫu. Edumate chưa kết nối dịch vụ AI, nên câu trả lời trong khung chat sẽ thông báo trạng thái này thay vì tự tạo lời giải.</p>
+          </div>
+          <div class="chat-thread" id="chatThread" aria-live="polite" aria-relevant="additions text">
+            <div class="chat-welcome" id="chatWelcome">
+              <div class="welcome-sparkle" aria-hidden="true">✦</div>
+              <h2>Học cùng nhau nhé!</h2>
+              <p>Hỏi bài, ôn tập hoặc chia sẻ điều bạn đang thắc mắc. Mình sẽ đồng hành cùng bạn.</p>
+            </div>
+          </div>
+          <div class="chat-composer-area">
+            <div class="quick-prompts" aria-label="Gợi ý câu hỏi nhanh">
+              <button class="prompt-chip" type="button" data-prompt="Hãy tóm tắt đoạn văn sau giúp mình: ">✍️ Tóm tắt đoạn văn</button>
+              <button class="prompt-chip" type="button" data-prompt="Hãy hướng dẫn mình giải bài toán này từng bước: ">📐 Giải bài toán này</button>
+              <button class="prompt-chip" type="button" data-prompt="Hãy giúp mình lập dàn ý cho bài văn về: ">📝 Lập dàn ý bài văn</button>
+            </div>
+            <form class="chat-composer" id="chatForm">
+              <input id="chatImageInput" type="file" accept="image/*" multiple hidden>
+              <button class="upload-button" id="uploadImageButton" type="button" aria-label="Tải lên hình ảnh bài tập" title="Tải lên hình ảnh bài tập">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg>
+              </button>
+              <label class="sr-only" for="chatInput">Nhập câu hỏi</label>
+              <textarea id="chatInput" rows="1" maxlength="2000" placeholder="Nhập câu hỏi của bạn..." aria-describedby="chatHelp"></textarea>
+              <button class="send-button" id="sendChatButton" type="submit" aria-label="Gửi câu hỏi" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+              </button>
+            </form>
+            <div class="attachment-list" id="attachmentList"></div>
+            <p class="chat-help" id="chatHelp">Enter để gửi · Shift + Enter để xuống dòng · Tối đa 8 MB mỗi ảnh</p>
+          </div>
+        </section>
+      </section>
+      <section class="quiz-view" id="quizView" aria-label="Luyện thi trắc nghiệm" hidden>
+        <header class="quiz-intro">
+          <div class="quiz-intro-icon" aria-hidden="true">✎</div>
+          <div>
+            <p class="eyebrow">ÔN TẬP CHỦ ĐỘNG · TỰ TIN BỨT PHÁ</p>
+            <h1>Luyện thi trắc nghiệm</h1>
+            <p class="quiz-intro-copy">Chọn môn học, tập trung trong 10 phút và xem giải thích sau khi nộp bài.</p>
+          </div>
+        </header>
+        <div class="quiz-layout">
+          <aside class="quiz-settings panel">
+            <label class="quiz-label" for="quizSubject">CHỌN MÔN HỌC</label>
+            <select id="quizSubject" class="quiz-subject-select">
+              <option value="Toán">📐 Toán</option>
+              <option value="Lý">⚡ Vật lý</option>
+              <option value="Hóa">🧪 Hóa học</option>
+              <option value="Tiếng Anh">🌍 Tiếng Anh</option>
+              <option value="Lịch Sử">🏛️ Lịch Sử</option>
+              <option value="Khoa học">🔬 Khoa học</option>
+            </select>
+            <div class="quiz-summary">
+              <div><span aria-hidden="true">❓</span><span><strong>5 câu hỏi</strong><small>Mỗi câu có 4 lựa chọn</small></span></div>
+              <div><span aria-hidden="true">⏱️</span><span><strong>10 phút</strong><small>Thời gian làm bài</small></span></div>
+            </div>
+            <button class="button button-primary quiz-start-button" id="quizStartButton" type="button">Bắt đầu làm bài</button>
+            <p class="quiz-start-hint">Đồng hồ bắt đầu khi bạn nhấn nút trên.</p>
+          </aside>
+          <div class="quiz-main">
+            <div class="quiz-status-bar">
+              <div>
+                <span class="quiz-current-subject" id="quizCurrentSubject">Toán</span>
+                <span class="quiz-question-count" id="quizQuestionCount">5 câu hỏi</span>
+              </div>
+              <div class="quiz-clock" id="quizClock" aria-live="off">
+                <span aria-hidden="true">◷</span>
+                <span id="quizTimer">10:00</span>
+              </div>
+            </div>
+            <div class="quiz-placeholder panel" id="quizPlaceholder">
+              <span class="quiz-placeholder-icon" aria-hidden="true">📝</span>
+              <h2>Sẵn sàng thử sức?</h2>
+              <p>Chọn môn học bên trái rồi nhấn “Bắt đầu làm bài” để xem 5 câu hỏi trắc nghiệm.</p>
+            </div>
+            <form class="quiz-form" id="quizForm" hidden>
+              <div class="quiz-question-list" id="quizQuestionList"></div>
+              <div class="quiz-submit-row">
+                <p id="quizProgress">Đã trả lời 0 / 5 câu</p>
+                <button class="button button-primary quiz-submit-button" type="submit">Nộp bài</button>
+              </div>
+            </form>
+            <section class="quiz-results" id="quizResults" aria-live="polite" hidden></section>
+          </div>
+        </div>
+      </section>
+      <footer class="page-footer">Được tạo bằng sự chăm chỉ và một chút trà sữa <span aria-hidden="true">🧋</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="edumate.js"></script>
+</body>
+</html>
