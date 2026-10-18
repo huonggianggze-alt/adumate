@@ -11,7 +11,7 @@
 
   // THAY URL NÀY BẰNG CLOUDFLARE WORKER CỦA BẠN
   const GEMINI_API_URL =
-    'https://edumate-gemini.TEN-TAI-KHOAN.workers.dev';
+    'https://edumate-gemini.lan14021999.workers.dev';
 
   const REQUEST_TIMEOUT = 60000;
   const MAX_MESSAGE_LENGTH = 3000;
